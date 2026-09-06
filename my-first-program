@@ -1,0 +1,57 @@
+import math
+
+
+def calculator():
+    print("Calculator")
+    print("Operations: +  -  *  /  ^ (power)  sqrt  %  (mod)")
+    print("For sqrt, just enter the first number and use 'sqrt' as the operator.\n")
+
+    while True:
+        try:
+            num1 = float(input("Enter first number: "))
+            op = input("Enter operator (+, -, *, /, ^, sqrt, %): ").strip()
+
+            if op == "sqrt":
+                if num1 < 0:
+                    print("Error: Cannot take square root of a negative number")
+                    continue
+                result = math.sqrt(num1)
+                print(f"Result: sqrt({num1}) = {result}")
+            else:
+                num2 = float(input("Enter second number: "))
+
+                if op == "+":
+                    result = num1 + num2
+                elif op == "-":
+                    result = num1 - num2
+                elif op == "*":
+                    result = num1 * num2
+                elif op == "/":
+                    if num2 == 0:
+                        print("Error: Division by zero")
+                        continue
+                    result = num1 / num2
+                elif op == "^":
+                    result = num1 ** num2
+                elif op == "%":
+                    if num2 == 0:
+                        print("Error: Division by zero")
+                        continue
+                    result = num1 % num2
+                else:
+                    print("Invalid operator")
+                    continue
+
+                print(f"Result: {num1} {op} {num2} = {result}")
+
+        except ValueError:
+            print("Invalid number entered")
+
+        again = input("\nCalculate again? (y/n): ").strip().lower()
+        if again != "y":
+            print("Goodbye!")
+            break
+
+
+if __name__ == "__main__":
+    calculator()
